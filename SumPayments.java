@@ -1,8 +1,6 @@
 package fr.sciam;
 
 
-import org.jetbrains.annotations.TestOnly;
-
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.net.http.HttpResponse;
