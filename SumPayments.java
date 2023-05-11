@@ -17,13 +17,13 @@ public class SumPayments {
 
     public static void main(String[] args) {
 
-        Payment tre = new Payment(BigDecimal.valueOf(234), true);
-        Payment tre1 = new Payment(BigDecimal.valueOf(234.90), false);
-        Payment tre2 = new Payment(BigDecimal.valueOf(678.9), true);
+        Payment ex = new Payment(BigDecimal.valueOf(234), true);
+        Payment ex1 = new Payment(BigDecimal.valueOf(234.90), false);
+        Payment ex2 = new Payment(BigDecimal.valueOf(678.9), true);
         List<Payment> listObject = new ArrayList<>();
-        listObject.add(tre);
-        listObject.add(tre1);
-        listObject.add(tre2);
+        listObject.add(ex);
+        listObject.add(ex1);
+        listObject.add(ex2);
         sumNonFeePayments(listObject);
     }
 
@@ -38,7 +38,6 @@ public class SumPayments {
                 count++;
             }
         }
-        System.out.println(total);
         return total;
     }
 }
