@@ -22,16 +22,19 @@ public class SumPayments {
         Payment ex = new Payment();
         Payment ex1 = new Payment();
         List<Payment> listObject =  new ArrayList<>();
-        for (int i = 0; i < 1000; i++) {
+        int count = 0;
+        while ( count < 1000) {
             int randomCond = (int)(Math.random() * range) + min;
             if (randomCond % 2 == 0) {
                 randomIsFee = true;
                 ex = new Payment(randomIsFee, BigDecimal.valueOf(Math.random() * 1000));
                 listObject.add(ex);
+                count++;
             } else {
                 randomIsFee = false;
                 ex1 = new Payment(randomIsFee, BigDecimal.valueOf(Math.random() * 1000));
                 listObject.add(ex1);
+            count++;
             }
         }
         resultFalse(listObject);
