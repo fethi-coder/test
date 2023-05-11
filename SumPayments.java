@@ -52,7 +52,7 @@ public class SumPayments {
             }
         }
         Message message = new Message("la valeur true total est de : ", total);
-        System.out.println(message.getMessage() + message.getPayment());
+        System.out.println(message.getMessage() + Math.round(message.getPayment().doubleValue()));
         return message.getMessage() + message.getPayment();
 
     }
@@ -67,7 +67,7 @@ public class SumPayments {
             }
         }
         Message message = new Message("la valeur false total est de : ", total);
-        System.out.println(message.getMessage() + message.getPayment());
+        System.out.println(message.getMessage() + Math.round(message.getPayment().doubleValue()));
         return message.getMessage() + message.getPayment();
     }
 }
