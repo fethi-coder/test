@@ -19,11 +19,8 @@ public class SumPayments {
 
         Payment ex = new Payment(BigDecimal.valueOf(234), true);
         Payment ex1 = new Payment(BigDecimal.valueOf(234.90), false);
-        Payment ex2 = new Payment(BigDecimal.valueOf(678.9), true);
-        List<Payment> listObject = new ArrayList<>();
-        listObject.add(ex);
-        listObject.add(ex1);
-        listObject.add(ex2);
+        Payment ex2 = new Payment(BigDecimal.valueOf(678.9), false);
+        List<Payment> listObject = List.of(ex, ex1, ex2);
         sumNonFeePayments(listObject);
     }
 
@@ -32,12 +29,13 @@ public class SumPayments {
         BigDecimal total = BigDecimal.valueOf(0);
         Integer count = 0;
         for (Payment payment : payments) {
-            if (payment.isFee()) {
+            if (!payment.isFee()) {
                 array.put(count, payment.getAmount());
                 total = array.values().stream().reduce(BigDecimal.ZERO, BigDecimal::add);
                 count++;
             }
         }
+        System.out.println(total);
         return total;
     }
 }
