@@ -16,18 +16,24 @@ public class SumPayments {
 
     public static List<Payment> creationList() {
         boolean randomIsFee;
+        int max = 100;
+        int min = 1;
+        int range = max - min + 1;
         Payment ex = new Payment();
         Payment ex1 = new Payment();
+        List<Payment> listObject =  new ArrayList<>();
         for (int i = 0; i < 1000; i++) {
-            if (i % 2 == 0) {
+            int randomCond = (int)(Math.random() * range) + min;
+            if (randomCond % 2 == 0) {
                 randomIsFee = true;
                 ex = new Payment(randomIsFee, BigDecimal.valueOf(Math.random() * 1000));
+                listObject.add(ex);
             } else {
                 randomIsFee = false;
                 ex1 = new Payment(randomIsFee, BigDecimal.valueOf(Math.random() * 1000));
+                listObject.add(ex1);
             }
         }
-        List<Payment> listObject = List.of(ex, ex1);
         resultFalse(listObject);
         sumNonFeePayments(listObject);
         return listObject;
