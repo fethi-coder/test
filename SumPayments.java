@@ -11,12 +11,15 @@ import java.util.stream.Stream;
 public class SumPayments {
 
     public static void main(String[] args) {
+        creationList();
+}
 
+    public static List<Payment> creationList() {
         boolean randomIsFee;
         Payment ex = new Payment();
-        Payment ex1= new Payment();
-        for (int i = 0; i < 100; i++) {
-            if (i%2 == 0) {
+        Payment ex1 = new Payment();
+        for (int i = 0; i < 1000; i++) {
+            if (i % 2 == 0) {
                 randomIsFee = true;
                 ex = new Payment(randomIsFee, BigDecimal.valueOf(Math.random() * 1000));
             } else {
@@ -24,14 +27,10 @@ public class SumPayments {
                 ex1 = new Payment(randomIsFee, BigDecimal.valueOf(Math.random() * 1000));
             }
         }
-
-        List<Payment> listObject = List.of(ex,ex1);
-        List<Payment> listObjectNull;
-
+        List<Payment> listObject = List.of(ex, ex1);
+        resultFalse(listObject);
         sumNonFeePayments(listObject);
-        System.out.println(sumNonFeePayments(listObject));
-        ResultFalse(listObject);
-        System.out.println(ResultFalse(listObject));
+        return listObject;
     }
 
 
@@ -47,22 +46,22 @@ public class SumPayments {
             }
         }
         Message message = new Message("la valeur true total est de : ", total);
+        System.out.println(message.getMessage() + message.getPayment());
         return message.getMessage() + message.getPayment();
 
     }
 
-    public static String ResultFalse(List<Payment> payments) {
-        List<BigDecimal> nullResul = new LinkedList<>();
+    public static String resultFalse(List<Payment> payments) {
+        LinkedList<BigDecimal> nullResul = new LinkedList<>();
         BigDecimal total = BigDecimal.valueOf(0);
-        Integer count = 0;
         for (Payment payment : payments) {
             if (!payment.isFee()) {
-                nullResul.add(count, payment.getAmount());
+                nullResul.add(payment.getAmount());
                 total = nullResul.stream().reduce(BigDecimal.ZERO, BigDecimal::add);
-                count++;
             }
         }
         Message message = new Message("la valeur false total est de : ", total);
+        System.out.println(message.getMessage() + message.getPayment());
         return message.getMessage() + message.getPayment();
     }
 }
