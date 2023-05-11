@@ -31,14 +31,14 @@ public class SumPayments {
         Map<Integer, BigDecimal> array = new HashMap<>();
         BigDecimal total = BigDecimal.valueOf(0);
         Integer count = 0;
-            for (Payment payment : payments) {
-                if (payment.isFee()) {
-                    array.put(count, payment.getAmount());
-                    total = array.values().stream().reduce(BigDecimal.ZERO, BigDecimal::add);
-                    count++;
-                }
+        for (Payment payment : payments) {
+            if (payment.isFee()) {
+                array.put(count, payment.getAmount());
+                total = array.values().stream().reduce(BigDecimal.ZERO, BigDecimal::add);
+                count++;
             }
-        Message message =new Message("la valeur true total est de : ",total);
+        }
+        Message message = new Message("la valeur true total est de : ", total);
         return message.getMessage() + message.getPayment();
     }
 
@@ -46,14 +46,14 @@ public class SumPayments {
         List<BigDecimal> nullResul = new LinkedList<>();
         BigDecimal total = BigDecimal.valueOf(0);
         Integer count = 0;
-            for (Payment payment : payments) {
-                if (!payment.isFee()) {
-                    nullResul.add(count, payment.getAmount());
-                    total = nullResul.stream().reduce(BigDecimal.ZERO, BigDecimal::add);
-                    count++;
-                }
+        for (Payment payment : payments) {
+            if (!payment.isFee()) {
+                nullResul.add(count, payment.getAmount());
+                total = nullResul.stream().reduce(BigDecimal.ZERO, BigDecimal::add);
+                count++;
             }
-        Message message =new Message("la valeur false total est de : ",total);
+        }
+        Message message = new Message("la valeur false total est de : ", total);
         return message.getMessage() + message.getPayment();
     }
 }
