@@ -16,6 +16,7 @@ import java.util.stream.Stream;
 public class SumPayments {
 
     public static void main(String[] args) {
+
         Payment tre = new Payment(BigDecimal.valueOf(234), true);
         Payment tre1 = new Payment(BigDecimal.valueOf(234.90), false);
         Payment tre2 = new Payment(BigDecimal.valueOf(678.9), true);
