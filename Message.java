@@ -7,12 +7,12 @@ import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 
-@Data
 @Builder
-@NoArgsConstructor
+@Data
 @AllArgsConstructor
-public class Payment {
-    private boolean isFee;
-    private BigDecimal amount;
+@NoArgsConstructor
+public class Message {
 
+    private String message;
+    private BigDecimal payment;
 }

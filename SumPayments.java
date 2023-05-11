@@ -5,37 +5,57 @@ import org.jetbrains.annotations.TestOnly;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.net.http.HttpResponse;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-
 
 public class SumPayments {
 
     public static void main(String[] args) {
 
-        Payment ex = new Payment(BigDecimal.valueOf(234), true);
-        Payment ex1 = new Payment(BigDecimal.valueOf(234.90), false);
-        Payment ex2 = new Payment(BigDecimal.valueOf(678.9), false);
+        Payment ex = new Payment(true, BigDecimal.valueOf(234));
+        Payment ex1 = new Payment(true, BigDecimal.valueOf(234.90));
+        Payment ex2 = new Payment(false, BigDecimal.valueOf(678.9));
         List<Payment> listObject = List.of(ex, ex1, ex2);
+        List<Payment> listObjectNull = List.of();
+
         sumNonFeePayments(listObject);
+        System.out.println(sumNonFeePayments(listObject));
+        ResultFalse(listObject);
+        System.out.println(ResultFalse(listObject));
     }
 
-    public static BigDecimal sumNonFeePayments(List<Payment> payments) {
+
+    public static String sumNonFeePayments(List<Payment> payments) {
         Map<Integer, BigDecimal> array = new HashMap<>();
         BigDecimal total = BigDecimal.valueOf(0);
         Integer count = 0;
-        for (Payment payment : payments) {
-            if (!payment.isFee()) {
-                array.put(count, payment.getAmount());
-                total = array.values().stream().reduce(BigDecimal.ZERO, BigDecimal::add);
-                count++;
+            for (Payment payment : payments) {
+                if (payment.isFee()) {
+                    array.put(count, payment.getAmount());
+                    total = array.values().stream().reduce(BigDecimal.ZERO, BigDecimal::add);
+                    count++;
+                }
             }
-        }
-        System.out.println(total);
-        return total;
+        Message message =new Message("la valeur true total est de : ",total);
+        return message.getMessage() + message.getPayment();
+    }
+
+    public static String ResultFalse(List<Payment> payments) {
+        List<BigDecimal> nullResul = new LinkedList<>();
+        BigDecimal total = BigDecimal.valueOf(0);
+        Integer count = 0;
+            for (Payment payment : payments) {
+                if (!payment.isFee()) {
+                    nullResul.add(count, payment.getAmount());
+                    total = nullResul.stream().reduce(BigDecimal.ZERO, BigDecimal::add);
+                    count++;
+                }
+            }
+        Message message =new Message("la valeur false total est de : ",total);
+        return message.getMessage() + message.getPayment();
     }
 }
+
+
