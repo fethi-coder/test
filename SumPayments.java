@@ -14,11 +14,21 @@ public class SumPayments {
 
     public static void main(String[] args) {
 
-        Payment ex = new Payment(true, BigDecimal.valueOf(234));
-        Payment ex1 = new Payment(true, BigDecimal.valueOf(234.90));
-        Payment ex2 = new Payment(false, BigDecimal.valueOf(678.9));
-        List<Payment> listObject = List.of(ex, ex1, ex2);
-        List<Payment> listObjectNull = List.of();
+        boolean randomIsFee;
+        Payment ex = new Payment();
+        Payment ex1= new Payment();
+        for (int i = 0; i < 100; i++) {
+            if (i%2 == 0) {
+                randomIsFee = true;
+                ex = new Payment(randomIsFee, BigDecimal.valueOf(Math.random() * 1000));
+            } else {
+                randomIsFee = false;
+                ex1 = new Payment(randomIsFee, BigDecimal.valueOf(Math.random() * 1000));
+            }
+        }
+
+        List<Payment> listObject = List.of(ex,ex1);
+        List<Payment> listObjectNull;
 
         sumNonFeePayments(listObject);
         System.out.println(sumNonFeePayments(listObject));
@@ -40,6 +50,7 @@ public class SumPayments {
         }
         Message message = new Message("la valeur true total est de : ", total);
         return message.getMessage() + message.getPayment();
+
     }
 
     public static String ResultFalse(List<Payment> payments) {
