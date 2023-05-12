@@ -15,7 +15,7 @@ public class SumPayments {
         creationList();
     }
 
-    public static List<PaymentDto> creationList() {
+    public static void creationList() {
         boolean randomIsFee;
         int max = 100;
         int min = -100;
@@ -28,19 +28,18 @@ public class SumPayments {
             int randomCond = (int) (Math.random() * range) + min;
             if (randomCond % 2 == 0) {
                 randomIsFee = true;
-                ex = new PaymentDto(randomIsFee, BigDecimal.valueOf(Math.random() * 1000));
+                ex = new PaymentDto(randomIsFee, BigDecimal.valueOf(randomCond * 1000));
                 listObject.add(ex);
                 count++;
             } else {
                 randomIsFee = false;
-                ex1 = new PaymentDto(randomIsFee, BigDecimal.valueOf(Math.random() * 1000));
+                ex1 = new PaymentDto(randomIsFee, BigDecimal.valueOf(randomCond * 1000));
                 listObject.add(ex1);
                 count++;
             }
         }
         resultFalse(listObject);
         sumNonFeePayments(listObject);
-        return listObject;
     }
 
     private static final DecimalFormat df = new DecimalFormat("0.000");
